@@ -34,7 +34,9 @@ module.exports = {
     CATEGORY_UPDATED_SUCCESS: 'Product category updated successfully',
     CATEGORY_DELETED_SUCCESS: 'Product category deleted successfully',
     CATEGORY_RETRIEVE_SUCCESS:'Product category retrieve successfully',
-    NO_DATA_FOUND: 'No data found'
+    NO_DATA_FOUND: 'No data found',
+    PAYMENT_UPDATED_SUCCESS: 'Payment updated successfully',
+    PAYMENT_RETRIEVE_SUCCESS: 'Payment retrieve successfully'
     
 
 }

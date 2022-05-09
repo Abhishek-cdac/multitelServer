@@ -30,6 +30,15 @@ db.service_products = require("./service_products.model")(sequelize, Sequelize);
 db.cms = require("./cms.model")(sequelize, Sequelize);
 db.vendor = require("./vendor.model")(sequelize, Sequelize);
 
+db.order = require("./order.model")(sequelize, Sequelize);
+
+
+db.admin.hasMany(db.order, {
+  foreignKey: "userId"
+})
+db.order.belongsTo(db.admin, {
+  foreignKey: "userId"
+})
 
 db.admin.hasMany(db.vendor, {
   foreignKey: "userId"

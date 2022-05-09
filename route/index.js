@@ -7,6 +7,7 @@ var promotion = require('./promotion');
 var service = require('./service');
 var cms = require('./cms');
 var vendor = require('./vendor');
+var payment = require('./payment');
 
 // user route file
 app.use('/user', user);
@@ -15,5 +16,5 @@ app.use('/promotion', promotion);
 app.use('/service', service);
 app.use('/cms', cms);
 app.use('/vendor', vendor);
-
+app.use('/payment', payment);
 module.exports = app;
