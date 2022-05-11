@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/vikasnectar/multitel/issues"
   },
-  "homepage": "https://github.com/vikasnectar/multitel#readme"
+  "homepage": "https://github.com/vikasnectar/multitel#readme",
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
 }
