@@ -31,7 +31,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.INTEGER(11),
+        type: Sequelize.BIGINT(20),
       },
       userId: {
         type: Sequelize.INTEGER(11),
