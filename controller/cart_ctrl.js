@@ -118,7 +118,6 @@ cart.cartDataDelete = async (req, res) => {
     }
   };
 
-
   
 cart.addFavCart = async (req,res)=>{
   try {
