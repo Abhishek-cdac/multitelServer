@@ -36,7 +36,11 @@ module.exports = {
     CATEGORY_RETRIEVE_SUCCESS:'Product category retrieve successfully',
     NO_DATA_FOUND: 'No data found',
     PAYMENT_UPDATED_SUCCESS: 'Payment updated successfully',
-    PAYMENT_RETRIEVE_SUCCESS: 'Payment retrieve successfully'
+    PAYMENT_RETRIEVE_SUCCESS: 'Payment retrieve successfully',
+    CART_SAVE_SUCCESS: ' Cart created successfully',
+    CART_DELETED_SUCCESS:'Cart deleted successfully',
+    CART_RETRIEVE_SUCCESS: 'Cart data retrieve successfully',
+    CART_DATA_DELETED_SUCCESS: 'Cart data deleted successfully'
     
 
 }

@@ -31,7 +31,8 @@ db.cms = require("./cms.model")(sequelize, Sequelize);
 db.vendor = require("./vendor.model")(sequelize, Sequelize);
 
 db.order = require("./order.model")(sequelize, Sequelize);
-
+db.cart=require("./cart.model")(sequelize,Sequelize);
+db.favCartData=require('./Fav_cart.model')(sequelize,Sequelize)
 
 db.admin.hasMany(db.order, {
   foreignKey: "userId"
@@ -80,5 +81,20 @@ db.promotion_tag.belongsToMany(db.promotion, {
   foreignKey: "tagId",
 });
 
+db.products.hasMany(db.cart,{
+  foreignKey:'productId'
+})
+
+db.cart.belongsTo(db.products,{
+  foreignKey:'productId'
+})
+
+db.products.hasMany(db.favCartData,{
+  foreignKey:'productId'
+})
+
+db.favCartData.belongsTo(db.products,{
+  foreignKey:'productId'
+})
 
 module.exports = db;

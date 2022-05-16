@@ -1,53 +1,57 @@
 module.exports = (sequelize, Sequelize) => {
-    const Vendors = sequelize.define("vendors", {
+  const Vendors = sequelize.define(
+    "vendors",
+    {
       first_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       last_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       user_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
       },
       gendar: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       category: {
-        type: Sequelize.TEXT('long')
+        type: Sequelize.TEXT("long"),
       },
       state: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       address: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       city: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.INTEGER(11)
+        type: Sequelize.BIGINT(20),
       },
       userId: {
-        type: Sequelize.INTEGER(11)
+        type: Sequelize.INTEGER(11),
       },
       profile_img: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       zipcode: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       status: {
         type: Sequelize.BOOLEAN,
-        allowNull: false, 
-        defaultValue: true
-      }
-    }, {
-      timestamps: true
-    });
-  
-    return Vendors;
-  };
+        allowNull: false,
+        defaultValue: true,
+      },
+    },
+    {
+      timestamps: true,
+    }
+  );
+
+  return Vendors;
+};
