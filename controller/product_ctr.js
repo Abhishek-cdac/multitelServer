@@ -244,7 +244,8 @@ products.add = async (req, res) => {
 
 products.edit = async (req, res) => {
   try {
-    let { id, name, category_id, price, description, cover_img } = req.body;
+    let { id, name, category_id, price, quantity, description, cover_img } =
+      req.body;
     let { userId } = req.user;
     product
       .findOne({
@@ -259,6 +260,7 @@ products.edit = async (req, res) => {
             name: name,
             categoryId: category_id,
             price: price,
+            quantity: quantity,
             userId: userId,
             description: description,
             slug: slug,

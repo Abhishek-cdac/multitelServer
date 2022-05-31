@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER(11),
       },
       quantity: {
-        type: Sequelize.INTEGER(100),
+        type: Sequelize.INTEGER(11),
       },
       price: {
         type: Sequelize.STRING,
@@ -38,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
-      timestamps: false,
+      timestamps: true,
     }
   );
 

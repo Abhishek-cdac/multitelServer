@@ -31,5 +31,4 @@ router.delete(
 );
 router.post("/product/getProductsByService", services.getProductsByCategory);
 router.post("/product/getProductBySlug", services.getProductBySlug);
-
 module.exports = router;

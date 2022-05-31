@@ -1,7 +1,7 @@
 module.exports = {
   HOST: "localhost",
-  USER: "node",
-  PASSWORD: "noDe!123",
+  USER: "root",
+  PASSWORD: "",
   DB: "multitel",
   dialect: "mysql",
   logging: false,
