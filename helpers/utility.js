@@ -80,6 +80,37 @@ utility.generateSlug = (title, table) => {
     }
   });
 };
+utility.fileupload1 = (files) => {
+  console.log(files);
+  return new Promise(async (resolve, reject) => {
+    let listKeys = Object.keys(files);
+    let listFiles = [];
+    var currentPath = process.cwd();
+    var file_path = path.join(currentPath, "/public/images");
+    StoreImages(0);
+    async function StoreImages(i) {
+      if (i < listKeys.length) {
+        let name = await utility.randomString(5);
+        var filedata = files[listKeys[i]].mv(
+          file_path + "/" + name + files[listKeys[i]].name,
+          (error, data) => {
+            if (error) {
+              reject(null);
+            } else {
+              listFiles.push({
+                imageName: listKeys[i],
+                image: name + files[listKeys[i]].name,
+              });
+              StoreImages(i + 1);
+            }
+          }
+        );
+      } else {
+        resolve(listFiles);
+      }
+    }
+  });
+};
 
 utility.checkTagAndCreate = (
   tags,

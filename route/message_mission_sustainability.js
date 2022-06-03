@@ -13,6 +13,11 @@ router.get(
   middileware.checkAuthentication,
   message_mission_sustainability.getMsgMissionSusBySlug
 );
+router.get(
+  "/getAllMsgMissionSus",
+  middileware.checkAuthentication,
+  message_mission_sustainability.getAllMsgMissionSus
+);
 router.put(
   "/editMsgMissionSus",
   middileware.checkAuthentication,

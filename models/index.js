@@ -47,7 +47,12 @@ db.sustainability_category = require("./sustainability_category.model")(
   sequelize,
   Sequelize
 );
-//db.sustainability = require("./sustainability.model")(sequelize, Sequelize);
+db.sustainability = require("./sustainability.model")(sequelize, Sequelize);
+db.multitel_pride = require("./multitel_pride.model")(sequelize, Sequelize);
+db.multitel_pride_image = require("./multitel_pride_image.model")(
+  sequelize,
+  Sequelize
+);
 
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
@@ -120,10 +125,18 @@ db.message_tag.belongsToMany(db.message_mission_sustainability, {
   foreignKey: "tagId",
 });
 
-// db.sustainability_category.hasMany(db.sustainability, {
-//   foreignKey: "sustainabilityId",
-// });
-// db.sustainability.belongsTo(db.sustainability_category, {
-//   foreignKey: "sustainabilityId",
-// });
+db.sustainability_category.hasMany(db.sustainability, {
+  foreignKey: "sustainabilityId",
+});
+db.sustainability.belongsTo(db.sustainability_category, {
+  foreignKey: "sustainabilityId",
+});
+
+db.multitel_pride.hasMany(db.multitel_pride_image, {
+  foreignKey: "title_Id",
+});
+
+db.multitel_pride_image.belongsTo(db.multitel_pride, {
+  foreignKey: "title_Id",
+});
 module.exports = db;

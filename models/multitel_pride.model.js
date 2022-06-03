@@ -1,29 +1,21 @@
 module.exports = (sequelize, Sequelize) => {
-  const sustainability = sequelize.define(
-    "sustainability",
+  const multitel_pride = sequelize.define(
+    "multitel_pride",
     {
       title: {
         type: Sequelize.STRING,
       },
-      sustainabilityId: {
-        type: Sequelize.INTEGER(11),
-      },
-      userId: {
-        type: Sequelize.INTEGER(11),
+      description: {
+        type: Sequelize.TEXT,
       },
       sort_description: {
         type: Sequelize.TEXT,
       },
-      description: {
-        type: Sequelize.TEXT,
+      userId: {
+        type: Sequelize.INTEGER(11),
       },
       slug: {
         type: Sequelize.STRING,
-      },
-      approved: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
       },
       status: {
         type: Sequelize.BOOLEAN,
@@ -36,5 +28,5 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
 
-  return sustainability;
+  return multitel_pride;
 };

@@ -124,6 +124,36 @@ message.getMsgMissionSusBySlug = async (req, res) => {
   }
 };
 
+message.getAllMsgMissionSus = async (req, res) => {
+  try {
+    let data = await message_mission_sustainability.findAll({
+      where: {
+        status: true,
+      },
+      include: [
+        {
+          model: message_tag,
+        },
+      ],
+    });
+    let massage =
+      data.length > 0
+        ? Constant.DATA_RETRIEVED_SUCCESS
+        : Constant.NO_DATA_FOUND;
+    return res.status(Constant.SUCCESS_CODE).json({
+      code: Constant.SUCCESS_CODE,
+      massage: massage,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(Constant.ERROR_CODE).json({
+      code: Constant.ERROR_CODE,
+      massage: Constant.SOMETHING_WENT_WRONG,
+      data: error,
+    });
+  }
+};
+
 message.editMsgMissionSus = async (req, res) => {
   try {
     let {
