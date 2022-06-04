@@ -53,6 +53,11 @@ db.multitel_pride_image = require("./multitel_pride_image.model")(
   sequelize,
   Sequelize
 );
+db.corporate_category = require("./corporate_category.model")(
+  sequelize,
+  Sequelize
+);
+db.corporate = require("./corporate.model")(sequelize, Sequelize);
 
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
@@ -139,4 +144,13 @@ db.multitel_pride.hasMany(db.multitel_pride_image, {
 db.multitel_pride_image.belongsTo(db.multitel_pride, {
   foreignKey: "title_Id",
 });
+
+db.corporate_category.hasMany(db.corporate, {
+  foreignKey: "corporateId",
+});
+
+db.corporate.belongsTo(db.corporate_category, {
+  foreignKey: "corporateId",
+});
+
 module.exports = db;

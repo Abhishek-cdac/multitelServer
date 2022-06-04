@@ -8,6 +8,7 @@ module.exports = {
   INACTIVATE: 406,
   NOT_FOUND: 404,
   CONFLICT: 409,
+  SERVER_ERROR: 500,
   REQUEST_NOT_FOUND: "Request not found",
   EMAIL_ALREADY_REGISTERED: "Email already registered.",
   INVAILID_DATA: "Registration form data is not correct.",

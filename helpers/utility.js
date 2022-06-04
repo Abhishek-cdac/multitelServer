@@ -81,7 +81,7 @@ utility.generateSlug = (title, table) => {
   });
 };
 utility.fileupload1 = (files) => {
-  console.log(files);
+  //console.log(files);
   return new Promise(async (resolve, reject) => {
     let listKeys = Object.keys(files);
     let listFiles = [];
