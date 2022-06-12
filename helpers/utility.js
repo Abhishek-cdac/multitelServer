@@ -112,6 +112,21 @@ utility.fileupload1 = (files) => {
   });
 };
 
+utility.fileupload2 = async (files) => {
+  return new Promise(async (resolve, reject) => {
+      let listKeys = Object.keys(files);
+      let name = await utility.randomString(5);
+      var currentPath = process.cwd();
+      var file_path = path.join(currentPath, '/public/images');
+      var filedata = files[listKeys[0]].mv(file_path + '/' + name + files[listKeys[0]].name, (error, data) => {
+          if (error) {
+              reject(null);
+          } else {
+              resolve(name + files[listKeys[0]].name);
+          }
+      })
+  })
+}
 utility.checkTagAndCreate = (
   tags,
   promotionId,
@@ -181,11 +196,12 @@ utility.checkTagAndCreate = (
 };
 
 utility.checkTagAndCreate1 = (
-  tags,
+  recruitment,
   messageId,
   message_tag,
   message_tag_relationship
 ) => {
+  console.log(recruitment)
   return new Promise(async (resolve, reject) => {
     message_tag_relationship
       .destroy({
@@ -198,9 +214,9 @@ utility.checkTagAndCreate1 = (
         reject(error);
       });
 
-    tags = tags.split(",");
-    tags.forEach((tag) => {
-      var slug = tag
+      recruitment = recruitment.split(",");
+      recruitment.forEach((recruitment) => {
+      var slug = recruitment
         .toLowerCase()
         .replace(/ /g, "-")
         .replace(/[^\w-]+/g, "");
@@ -215,7 +231,7 @@ utility.checkTagAndCreate1 = (
           if (!result) {
             let tagData = {
               slug: slug,
-              name: tag,
+              name: recruitment,
             };
             message_tag.create(tagData).then((t_result) => {
               let relationship = {
@@ -250,7 +266,6 @@ utility.checkTagAndCreate1 = (
     });
   });
 };
-
 utility.uploadBase64Image = (imgBase64) => {
   return new Promise(async (resolve, reject) => {
     let name = await utility.randomString(12);

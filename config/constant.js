@@ -49,8 +49,8 @@ module.exports = {
   DATA_DELETED_SUCCESS: "Data deleted successfully",
   DATA_UPDATED_SUCCESS: "Data updated successfully",
   DATA_RETRIEVED_SUCCESS: "Data retrieved successfully",
-  CATEGORY_SAVED_SUCCESS: "Sustainability category created successfully",
-  CATEGORY_UPDATE_SUCCESS: "Sustainability category updated successfully",
-  CATEGORY_DELETE_SUCCESS: "Sustainability category deleted successfully",
-  CATEGORY_RETRIEVED_SUCCESS: "Sustainability category retrieve successfully",
+  CATEGORY_SAVED_SUCCESS: " Category created successfully",
+  CATEGORY_UPDATE_SUCCESS: " Category updated successfully",
+  CATEGORY_DELETE_SUCCESS: "Category deleted successfully",
+  CATEGORY_RETRIEVED_SUCCESS: "Category retrieve successfully",
 };

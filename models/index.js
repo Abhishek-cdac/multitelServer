@@ -58,6 +58,15 @@ db.corporate_category = require("./corporate_category.model")(
   Sequelize
 );
 db.corporate = require("./corporate.model")(sequelize, Sequelize);
+db.news_category = require("./news_category.model")(sequelize,Sequelize);
+db.news = require("./news.model")(sequelize,Sequelize);
+db.news_image = require("./news_images.model")(sequelize,Sequelize);
+db.recruitment_category = require("./recruitment_category.model")(sequelize,Sequelize);
+db.recruitment = require("./recruitment.model")(sequelize,Sequelize);
+db.recruitment_requirement_tag_relationship = require("./recruitment_requirement_tag_relationship.model")(sequelize,Sequelize)
+db.recruitment_requirement_tag = require("./recruitment_requirement_tag.model")(sequelize,Sequelize);
+db.recruitment_description_tag = require("./recruitment_description_tag.model")(sequelize,Sequelize);
+db.recruitment_description_tag_relationship = require("./recruitment_description_tag_relationship.model")(sequelize,Sequelize)
 
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
@@ -153,4 +162,49 @@ db.corporate.belongsTo(db.corporate_category, {
   foreignKey: "corporateId",
 });
 
+
+db.news_category.hasMany(db.news, {
+  foreignKey: "categoryId",
+});
+
+db.news.belongsTo(db.news_category, {
+  foreignKey: "categoryId",
+});
+
+db.news.hasMany(db.news_image, {
+  foreignKey: "title_Id",
+});
+
+db.news_image.belongsTo(db.news, {
+  foreignKey: "title_Id",
+});
+
+db.recruitment_category.hasMany(db.recruitment, {
+  foreignKey: "categoryId",
+});
+
+db.recruitment.belongsTo(db.recruitment_category, {
+  foreignKey: "categoryId",
+});
+
+
+db.recruitment.belongsToMany(db.recruitment_requirement_tag, {
+  through: "recruitment_requirement_tag_relationship",
+  foreignKey: "messageId",
+});
+
+db.recruitment_requirement_tag.belongsToMany(db.recruitment, {
+  through: "recruitment_requirement_tag_relationship",
+  foreignKey: "tagId",
+});
+
+db.recruitment.belongsToMany(db.recruitment_description_tag, {
+  through: "recruitment_description_tag_relationship",
+  foreignKey: "messageId",
+});
+
+db.recruitment_description_tag.belongsToMany(db.recruitment, {
+  through: "recruitment_description_tag_relationship",
+  foreignKey: "tagId",
+});
 module.exports = db;

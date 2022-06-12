@@ -20,7 +20,7 @@ message.addMsgMissionSus = async (req, res) => {
       description_2,
       sub_heading_3,
       description_3,
-      tag,
+      recruitment,
     } = req.body;
     let { userId } = req.body;
     let slug = await utility.generateSlug(name, message_mission_sustainability);
@@ -43,13 +43,24 @@ message.addMsgMissionSus = async (req, res) => {
 
     let result = await message_mission_sustainability.create(Data);
     if (result) {
-      if (tag) {
+      if (recruitment) {
         let data = await utility.checkTagAndCreate1(
-          tag,
+          recruitment,
           result.id,
           message_tag,
           message_tag_relationship
         );
+        console.log(data)
+      }
+
+      if (description) {
+        let data = await utility.checkTagAndCreate1(
+          description,
+          result.id,
+          message_tag,
+          message_tag_relationship
+        );
+        console.log(data)
       }
 
       let data = await message_mission_sustainability.findAll({
