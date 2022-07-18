@@ -137,31 +137,35 @@ corporates.addCorporateCategory = async (req, res) => {
     }
   };
   
-  corporates.getAllCorporateCategory = async (req, res) => {
-    try {
-      let data = await corporate_category.findAll({
-        where: {
-          status: true,
+corporates.getAllCorporateCategory = async (req, res) => {
+  try {
+    let data = await corporate_category.findAll({
+      where: {
+        status: true,
+      },
+      include: [
+        {
+          model: corporate,
         },
-      });
-      let massage =
-        data.length > 0
-          ? Constant.CATEGORY_RETRIEVED_SUCCESS
-          : Constant.NO_DATA_FOUND;
-      return res.status(Constant.SUCCESS_CODE).json({
-        code: Constant.SUCCESS_CODE,
-        massage: massage,
-        data: data,
-      });
-    } catch (error) {
-      return res.status(Constant.ERROR_CODE).json({
-        code: Constant.ERROR_CODE,
-        massage: Constant.SOMETHING_WENT_WRONG,
-        data: error,
-      });
-    }
-  };
-
+      ],
+    });
+    let massage =
+      data.length > 0
+        ? Constant.CATEGORY_RETRIEVED_SUCCESS
+        : Constant.NO_DATA_FOUND;
+    return res.status(Constant.SUCCESS_CODE).json({
+      code: Constant.SUCCESS_CODE,
+      massage: massage,
+      data: data,
+    });
+  } catch (error) {
+    return res.status(Constant.ERROR_CODE).json({
+      code: Constant.ERROR_CODE,
+      massage: Constant.SOMETHING_WENT_WRONG,
+      data: error,
+    });
+  }
+};
 corporates.addCorporate = async (req, res) => {
     try {
       let { name, corporateId, description} = req.body;

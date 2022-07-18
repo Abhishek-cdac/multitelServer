@@ -15,6 +15,8 @@ var multitel_Pride = require("./multitel_pride");
 var corporate = require("./corporate")
 var news = require("./news")
 var recruitment = require("./recruitment")
+var WhoTeliDigi = require("./who_teli_digi");
+var telecommnication = require("./telecommunication_submenus");	
 
 // user route file
 app.use("/user", user);
@@ -31,4 +33,6 @@ app.use("/multitelPride", multitel_Pride);
 app.use("/corporate",corporate)
 app.use("/news",news)
 app.use("/recruitment",recruitment)
+app.use("/WhoTeliDigi", WhoTeliDigi);
+app.use("/telecommunication", telecommnication);
 module.exports = app;

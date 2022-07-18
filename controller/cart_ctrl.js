@@ -118,6 +118,44 @@ cart.cartDataDelete = async (req, res) => {
     });
   }
 };
+cart.AllCartDataDelete = async (req, res) => {
+  try {
+    let { userId } = req.body;
+    await cartdata
+      .findAll({ where: { userId: userId } })
+      .then(async (result) => {
+        if (result) {
+          for (var i = 0; i < result.length; i++) {
+            cartdata.update(
+              { status: false },
+              {
+                where: {
+                  userId: userId,
+                },
+              }
+            );
+          }
+          return res.status(Constant.SUCCESS_CODE).json({
+            code: Constant.SUCCESS_CODE,
+            massage: Constant.CART_DATA_DELETED_SUCCESS,
+            data: result,
+          });
+        } else {
+          return res.status(Constant.ERROR_CODE).json({
+            code: Constant.ERROR_CODE,
+            massage: Constant.SOMETHING_WENT_WRONG,
+            data: result,
+          });
+        }
+      });
+  } catch (error) {
+    return res.status(Constant.ERROR_CODE).json({
+      code: Constant.ERROR_CODE,
+      massage: Constant.SOMETHING_WENT_WRONG,
+      data: error,
+    });
+  }
+};
 
 cart.updateCartData = async (req, res) => {
   try {
@@ -164,7 +202,7 @@ cart.addFavCart = async (req, res) => {
       .then(async (result) => {
         return res.status(Constant.SUCCESS_CODE).json({
           code: Constant.SUCCESS_CODE,
-          massage: Constant.FAVCART_SAVE_SUCCESS,
+          massage: Constant.CART_SAVE_SUCCESS,
           data: result,
         });
       })
@@ -234,7 +272,7 @@ cart.favCartDataDelete = async (req, res) => {
 
           return res.status(Constant.SUCCESS_CODE).json({
             code: Constant.SUCCESS_CODE,
-            massage: Constant.DATA_DELETED_SUCCESS,
+            massage: Constant.CART_DATA_DELETED_SUCCESS,
             data: result,
           });
         } else {

@@ -8,14 +8,12 @@ router.post(
   middileware.checkAuthentication,
   message_mission_sustainability.addMsgMissionSus
 );
-router.get(
+router.post(
   "/getMsgMissionSusBySlug",
-  middileware.checkAuthentication,
   message_mission_sustainability.getMsgMissionSusBySlug
 );
 router.get(
   "/getAllMsgMissionSus",
-  middileware.checkAuthentication,
   message_mission_sustainability.getAllMsgMissionSus
 );
 router.put(

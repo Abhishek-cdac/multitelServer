@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
       slug: {
         type: Sequelize.STRING,
       },
+      image: {
+        type: Sequelize.JSON,
+      },
       status: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

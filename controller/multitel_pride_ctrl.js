@@ -3,7 +3,8 @@ const Constant = require("../config/constant");
 const db = require("../models");
 const utility = require("../helpers/utility");
 const multitel_pride = db.multitel_pride;
-const multitel_pride_image = db.multitel_pride_image;
+const fs = require("fs");
+const path = require("path");
 const { Op, sequelize } = require("sequelize");
 
 let multitel = {};
@@ -24,14 +25,30 @@ multitel.addMultitelPride = async (req, res) => {
     let result = await multitel_pride.create(Data);
     if (result) {
       if (req.files) {
-        let filename = await utility.fileupload1(req.files);
-        //console.log(filename);
-        if (filename.length > 0) {
-          filename.filter((obj) => {
-            obj.title_Id = result.id;
+        const images = [];
+        req.files.image = !req.files.image.length
+          ? [req.files.image]
+          : req.files.image;
+        for (let i = 0; i < req.files.image.length; i++) {
+          const image = req.files.image[i];
+          console.log(image);
+          let currentPath = process.cwd();
+          let file_path = path.join(currentPath, "/public/images/" + image.name);
+
+          await new Promise((resolve) => {
+            image.mv(file_path, (err) => {
+              if (err) throw err;
+              console.log(image);
+              if (!err) images.push(`${image.name}`);
+              resolve(true);
+            });
           });
-          await multitel_pride_image.bulkCreate(filename);
         }
+        console.log("utility", images);
+        let userData = {
+          image: images,
+        };
+        result.update(userData);
       }
       return res.status(Constant.SUCCESS_CODE).json({
         code: Constant.SUCCESS_CODE,
@@ -58,11 +75,6 @@ multitel.getMultitelPrideById = async (req, res) => {
   try {
     let { id } = req.body;
     let data = await multitel_pride.findAll({
-      include: [
-        {
-          model: multitel_pride_image,
-        },
-      ],
       where: {
         id: id,
         status: true,
@@ -90,11 +102,6 @@ multitel.getMultitelPrideBySlug = async (req, res) => {
   try {
     let { slug } = req.body;
     let data = await multitel_pride.findAll({
-      include: [
-        {
-          model: multitel_pride_image,
-        },
-      ],
       where: {
         slug: slug,
         status: true,
@@ -121,11 +128,6 @@ multitel.getMultitelPrideBySlug = async (req, res) => {
 multitel.getAllMultitelPride = async (req, res) => {
   try {
     let data = await multitel_pride.findAll({
-      include: [
-        {
-          model: multitel_pride_image,
-        },
-      ],
       where: {
         status: true,
       },
@@ -172,51 +174,33 @@ multitel.editMultitelPride = async (req, res) => {
             .update(Data)
             .then(async (result) => {
               if (req.files) {
-                let filename = await utility.fileupload1(req.files);
+                const images = [];
+                req.files.image = !req.files.image.length
+                  ? [req.files.image]
+                  : req.files.image;
+                for (let i = 0; i < req.files.image.length; i++) {
+                  const image = req.files.image[i];
+                  console.log(image);
+                  let currentPath = process.cwd();
+                  let file_path = path.join(
+                    currentPath,
+                    "/public/images/" + image.name
+                  );
 
-                if (filename.length) {
-                  filename.filter((obj) => {
-                    obj.title_Id = id;
+                  await new Promise((resolve) => {
+                    image.mv(file_path, (err) => {
+                      if (err) throw err;
+                      console.log(image);
+                      if (!err) images.push(`${image.name}`);
+                      resolve(true);
+                    });
                   });
-
-                  let resultDocuments = await multitel_pride_image.findAll({
-                    where: {
-                      title_Id: id,
-                      imageName: {
-                        [Op.in]: filename.map((o) => o["imageName"]),
-                      },
-                    },
-                  });
-
-                  let listCreateDoc = [];
-
-                  if (resultDocuments) {
-                    async function updateDoc(i) {
-                      if (i < filename.length) {
-                        let obj = filename[i];
-                        let objExist = resultDocuments.find(
-                          (element) => element.imageName === obj.imageName
-                        );
-                        if (objExist) {
-                          await objExist.update({
-                            image: obj.image,
-                          });
-                          updateDoc(i + 1);
-                        } else {
-                          listCreateDoc.push(obj);
-                          updateDoc(i + 1);
-                        }
-                      } else {
-                        if (listCreateDoc) {
-                          await multitel_pride_image.bulkCreate(listCreateDoc);
-                        }
-                      }
-                    }
-                    updateDoc(0);
-                  } else {
-                    await multitel_pride_image.bulkCreate(filename);
-                  }
                 }
+                console.log("utility", images);
+                let userData = {
+                  image: images,
+                };
+                result.update(userData);
               }
 
               return res.status(Constant.SUCCESS_CODE).json({

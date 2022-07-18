@@ -49,10 +49,6 @@ db.sustainability_category = require("./sustainability_category.model")(
 );
 db.sustainability = require("./sustainability.model")(sequelize, Sequelize);
 db.multitel_pride = require("./multitel_pride.model")(sequelize, Sequelize);
-db.multitel_pride_image = require("./multitel_pride_image.model")(
-  sequelize,
-  Sequelize
-);
 db.corporate_category = require("./corporate_category.model")(
   sequelize,
   Sequelize
@@ -60,13 +56,25 @@ db.corporate_category = require("./corporate_category.model")(
 db.corporate = require("./corporate.model")(sequelize, Sequelize);
 db.news_category = require("./news_category.model")(sequelize,Sequelize);
 db.news = require("./news.model")(sequelize,Sequelize);
-db.news_image = require("./news_images.model")(sequelize,Sequelize);
 db.recruitment_category = require("./recruitment_category.model")(sequelize,Sequelize);
 db.recruitment = require("./recruitment.model")(sequelize,Sequelize);
 db.recruitment_requirement_tag_relationship = require("./recruitment_requirement_tag_relationship.model")(sequelize,Sequelize)
 db.recruitment_requirement_tag = require("./recruitment_requirement_tag.model")(sequelize,Sequelize);
 db.recruitment_description_tag = require("./recruitment_description_tag.model")(sequelize,Sequelize);
 db.recruitment_description_tag_relationship = require("./recruitment_description_tag_relationship.model")(sequelize,Sequelize)
+db.user_recruitment_form = require("./user_recruitment_form.model")(
+  sequelize,
+  Sequelize
+);
+db.who_teli_digi = require("./who_teli_digi.model")(sequelize, Sequelize);
+db.telecommunication_submenus = require("./telecommunication_submenus.model")(
+  sequelize,
+  Sequelize
+);
+db.telecommunication = require("./telecommunication.model")(
+  sequelize,
+  Sequelize
+);
 
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
@@ -146,14 +154,6 @@ db.sustainability.belongsTo(db.sustainability_category, {
   foreignKey: "sustainabilityId",
 });
 
-db.multitel_pride.hasMany(db.multitel_pride_image, {
-  foreignKey: "title_Id",
-});
-
-db.multitel_pride_image.belongsTo(db.multitel_pride, {
-  foreignKey: "title_Id",
-});
-
 db.corporate_category.hasMany(db.corporate, {
   foreignKey: "corporateId",
 });
@@ -169,14 +169,6 @@ db.news_category.hasMany(db.news, {
 
 db.news.belongsTo(db.news_category, {
   foreignKey: "categoryId",
-});
-
-db.news.hasMany(db.news_image, {
-  foreignKey: "title_Id",
-});
-
-db.news_image.belongsTo(db.news, {
-  foreignKey: "title_Id",
 });
 
 db.recruitment_category.hasMany(db.recruitment, {
@@ -206,5 +198,18 @@ db.recruitment.belongsToMany(db.recruitment_description_tag, {
 db.recruitment_description_tag.belongsToMany(db.recruitment, {
   through: "recruitment_description_tag_relationship",
   foreignKey: "tagId",
+});
+
+db.recruitment_category.hasMany(db.user_recruitment_form, {
+  foreignKey: "categoryId",
+});
+db.user_recruitment_form.belongsTo(db.recruitment_category, {
+  foreignKey: "categoryId",
+});
+db.telecommunication_submenus.hasMany(db.telecommunication, {
+  foreignKey: "category_id",
+});
+db.telecommunication.belongsTo(db.telecommunication_submenus, {
+  foreignKey: "category_id",
 });
 module.exports = db;

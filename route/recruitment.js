@@ -11,9 +11,12 @@ router.delete('/deleteRecruitmentCategory',middileware.checkAuthentication,recru
 
 
 router.post('/addRecruitment',middileware.checkAuthentication,recruitment.addRecruitment)
-router.post('/getRecruitmentBySlug',recruitment.getRecruitmentBySlug)
 router.get('/getAllRecruitment',recruitment.getAllRecruitment)
 router.post('/getRecruitmentByCategory',recruitment.getRecruitmentByCategory)
 router.put('/editRecruitment',middileware.checkAuthentication,recruitment.editRecruitment)
 router.delete('/deleteRecruitment',middileware.checkAuthentication,recruitment.deleteRecruitment)
+
+
+router.post("/fillRecruitmentForm", recruitment.fillRecruitmentForm);
+router.get("/getAllFillRecruitmentForm", recruitment.getAllFillRecruitmentForm);
 module.exports = router

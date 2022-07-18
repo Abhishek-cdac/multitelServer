@@ -115,14 +115,13 @@ utility.fileupload1 = (files) => {
 utility.fileupload2 = async (files) => {
   return new Promise(async (resolve, reject) => {
       let listKeys = Object.keys(files);
-      let name = await utility.randomString(5);
       var currentPath = process.cwd();
       var file_path = path.join(currentPath, '/public/images');
-      var filedata = files[listKeys[0]].mv(file_path + '/' + name + files[listKeys[0]].name, (error, data) => {
+      var filedata = files[listKeys[0]].mv(file_path + '/'+ files[listKeys[0]].name, (error, data) => {
           if (error) {
               reject(null);
           } else {
-              resolve(name + files[listKeys[0]].name);
+              resolve(files[listKeys[0]].name);
           }
       })
   })

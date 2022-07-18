@@ -15,7 +15,7 @@ router.put(
   middileware.checkAuthentication,
   cart.updateCartData
 );
-
+router.delete("/AllCartDataDelete", cart.AllCartDataDelete);
 router.post("/addFavCart", middileware.checkAuthentication, cart.addFavCart);
 router.post(
   "/getFavCartData",

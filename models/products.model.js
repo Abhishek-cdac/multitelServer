@@ -11,12 +11,13 @@ module.exports = (sequelize, Sequelize) => {
       userId: {
         type: Sequelize.INTEGER(11),
       },
-      quantity: {
-        type: Sequelize.INTEGER(11),
-      },
       price: {
         type: Sequelize.STRING,
       },
+      quantity: {
+        type: Sequelize.INTEGER(11),
+      },
+
       slug: {
         type: Sequelize.STRING,
       },
