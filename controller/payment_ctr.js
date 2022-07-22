@@ -39,7 +39,7 @@ payments.createRefrenceId = async (req,res) => {
     .then(async function (response) {
 
       let mailOptions = {
-        from: 'vikas <vikas.kushwah@nectarinfotel.com>',
+        from: 'Geeta <geeta.kori@nectarinfotel.com>',
         to: requestData.custom_fields.email,
         subject: 'multitel',
         text: 'payment referenceID ',

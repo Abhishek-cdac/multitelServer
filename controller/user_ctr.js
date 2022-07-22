@@ -49,7 +49,7 @@ users.userRegistration = async function (req, res) {
         }
 
         let mailOptions = {
-          from: "vikas <vikas.kushwah@nectarinfotel.com>",
+          from: "Geeta <geeta.kori@nectarinfotel.com>",
           to: userData.email,
           subject: "multitel",
           text: "Email verification lik",
@@ -238,7 +238,7 @@ users.forgotPassword = async (req, res) => {
           result.update(UserData);
 
           let mailOptions = {
-            from: "vikas <vikas.kushwah@nectarinfotel.com>",
+            from: "Geeta <geeta.kori@nectarinfotel.com>",
             to: email,
             subject: "Forgot password",
             text: "",
