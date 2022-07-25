@@ -54,14 +54,31 @@ db.corporate_category = require("./corporate_category.model")(
   Sequelize
 );
 db.corporate = require("./corporate.model")(sequelize, Sequelize);
-db.news_category = require("./news_category.model")(sequelize,Sequelize);
-db.news = require("./news.model")(sequelize,Sequelize);
-db.recruitment_category = require("./recruitment_category.model")(sequelize,Sequelize);
-db.recruitment = require("./recruitment.model")(sequelize,Sequelize);
-db.recruitment_requirement_tag_relationship = require("./recruitment_requirement_tag_relationship.model")(sequelize,Sequelize)
-db.recruitment_requirement_tag = require("./recruitment_requirement_tag.model")(sequelize,Sequelize);
-db.recruitment_description_tag = require("./recruitment_description_tag.model")(sequelize,Sequelize);
-db.recruitment_description_tag_relationship = require("./recruitment_description_tag_relationship.model")(sequelize,Sequelize)
+db.news_category = require("./news_category.model")(sequelize, Sequelize);
+db.news = require("./news.model")(sequelize, Sequelize);
+db.recruitment_category = require("./recruitment_category.model")(
+  sequelize,
+  Sequelize
+);
+db.recruitment = require("./recruitment.model")(sequelize, Sequelize);
+db.recruitment_requirement_tag_relationship =
+  require("./recruitment_requirement_tag_relationship.model")(
+    sequelize,
+    Sequelize
+  );
+db.recruitment_requirement_tag = require("./recruitment_requirement_tag.model")(
+  sequelize,
+  Sequelize
+);
+db.recruitment_description_tag = require("./recruitment_description_tag.model")(
+  sequelize,
+  Sequelize
+);
+db.recruitment_description_tag_relationship =
+  require("./recruitment_description_tag_relationship.model")(
+    sequelize,
+    Sequelize
+  );
 db.user_recruitment_form = require("./user_recruitment_form.model")(
   sequelize,
   Sequelize
@@ -76,6 +93,7 @@ db.telecommunication = require("./telecommunication.model")(
   Sequelize
 );
 db.digitotal = require("./digitotal.model")(sequelize, Sequelize);
+db.contact_us = require("./contact_us.model")(sequelize, Sequelize);
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
 });
@@ -162,7 +180,6 @@ db.corporate.belongsTo(db.corporate_category, {
   foreignKey: "corporateId",
 });
 
-
 db.news_category.hasMany(db.news, {
   foreignKey: "categoryId",
 });
@@ -178,7 +195,6 @@ db.recruitment_category.hasMany(db.recruitment, {
 db.recruitment.belongsTo(db.recruitment_category, {
   foreignKey: "categoryId",
 });
-
 
 db.recruitment.belongsToMany(db.recruitment_requirement_tag, {
   through: "recruitment_requirement_tag_relationship",
