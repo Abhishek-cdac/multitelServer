@@ -18,6 +18,7 @@ var recruitment = require("./recruitment");
 var WhoTeliDigi = require("./who_teli_digi");
 var telecommnication = require("./telecommunication_submenus");
 var digitotal = require("./digitotal");
+var contact_us = require("./contact_us");
 
 // user route file
 app.use("/user", user);
@@ -37,4 +38,5 @@ app.use("/recruitment", recruitment);
 app.use("/WhoTeliDigi", WhoTeliDigi);
 app.use("/telecommunication", telecommnication);
 app.use("/digitotal", digitotal);
+app.use("/contactUs", contact_us);
 module.exports = app;

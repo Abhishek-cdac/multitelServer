@@ -93,6 +93,7 @@ db.telecommunication = require("./telecommunication.model")(
   Sequelize
 );
 db.digitotal = require("./digitotal.model")(sequelize, Sequelize);
+db.contact_us = require("./contact_us.model")(sequelize, Sequelize);
 db.admin.hasMany(db.order, {
   foreignKey: "userId",
 });
